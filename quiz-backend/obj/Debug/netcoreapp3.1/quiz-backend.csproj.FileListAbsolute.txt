@@ -89,3 +89,4 @@ C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\zh
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\quiz-backend.csproj.CopyComplete
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\quiz-backend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\quiz-backend.csprojAssemblyReference.cache
