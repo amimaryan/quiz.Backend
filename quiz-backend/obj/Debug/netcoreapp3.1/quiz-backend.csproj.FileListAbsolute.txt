@@ -7,7 +7,6 @@ C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\qu
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\quiz-backend.runtimeconfig.dev.json
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\quiz-backend.dll
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\bin\Debug\netcoreapp3.1\quiz-backend.pdb
-C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\quiz-backend.csprojAssemblyReference.cache
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\staticwebassets\quiz-backend.StaticWebAssets.Manifest.cache
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\staticwebassets\quiz-backend.StaticWebAssets.xml
 C:\Users\Aret\Projects\quiz\quiz-backend\quiz-backend\obj\Debug\netcoreapp3.1\quiz-backend.AssemblyInfoInputs.cache
