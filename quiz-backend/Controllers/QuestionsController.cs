@@ -21,19 +21,14 @@ namespace quiz_backend.Controllers
 
         [HttpGet]
         public IEnumerable<Question> Get()
-        {
-
-            return new Question[] {
-                new Question() { Text = "Hello" },
-                new Question() { Text = "Hi" }
-            };
-
+        { 
+            return context.Questions;
         }
 
         [HttpPost]
         public void Post([FromBody]Question question)
         {
-            context.Questions.Add(new Question() { Text = "test" });
+            context.Questions.Add(question);
             context.SaveChanges();
         }
     }
