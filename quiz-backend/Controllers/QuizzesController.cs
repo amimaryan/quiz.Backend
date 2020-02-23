@@ -14,19 +14,25 @@ namespace quiz_backend.Controllers
     [ApiController]
     public class QuizzesController : ControllerBase
     {
-        private readonly QuizContext _context;
+        readonly QuizContext _context;
 
         public QuizzesController(QuizContext context)
         {
-            _context = context;
+            this._context = context;
+        }
+
+        [HttpGet]
+        public IEnumerable<Quiz> Get()
+        {
+            return _context.Quiz;
         }
 
         // GET: api/Quizzes
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Quiz>>> GetQuiz()
-        {
-            return await _context.Quiz.ToListAsync();
-        }
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Quiz>>> GetQuiz()
+        //{
+        //    return await _context.Quiz.ToListAsync();
+        //}
 
         // GET: api/Quizzes/5
         [HttpGet("{id}")]
@@ -49,29 +55,11 @@ namespace quiz_backend.Controllers
         public async Task<IActionResult> PutQuiz(int id, Quiz quiz)
         {
             if (id != quiz.ID)
-            {
                 return BadRequest();
-            }
 
             _context.Entry(quiz).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuizExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            await _context.SaveChangesAsync();
+            return Ok(quiz);
         }
 
         // POST: api/Quizzes
