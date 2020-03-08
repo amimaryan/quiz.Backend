@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace quiz_backend
 {
@@ -35,8 +36,12 @@ namespace quiz_backend
             }));
 
             services.AddDbContext<QuizContext>(opt=>opt.UseInMemoryDatabase("quiz"));
+            services.AddDbContext<UserDbContext>(opt => opt.UseInMemoryDatabase("user"));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
 
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
