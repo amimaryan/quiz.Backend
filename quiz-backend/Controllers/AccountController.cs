@@ -16,6 +16,7 @@ namespace quiz_backend.Controllers
     }
 
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class AccountController : ControllerBase
     {
