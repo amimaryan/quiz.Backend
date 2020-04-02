@@ -25,7 +25,8 @@ namespace quiz_backend.Controllers
         [HttpGet]
         public IEnumerable<Quiz> Get()
         {
-            return _context.Quiz;
+            var userId = HttpContext.User.Claims.First().Value;
+            return _context.Quiz.Where(q => q.OwnerId == userId);
         }
 
         // GET: api/Quizzes
@@ -36,6 +37,7 @@ namespace quiz_backend.Controllers
         //}
 
         // GET: api/Quizzes/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Quiz>> GetQuiz(int id)
         {
@@ -70,6 +72,16 @@ namespace quiz_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Quiz>> PostQuiz(Quiz quiz)
         {
+
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+
+            var userId = HttpContext.User.Claims.First().Value;
+
+            quiz.OwnerId = userId;
+
             _context.Quiz.Add(quiz);
             await _context.SaveChangesAsync();
 
@@ -81,10 +93,6 @@ namespace quiz_backend.Controllers
         public async Task<ActionResult<Quiz>> DeleteQuiz(int id)
         {
             var quiz = await _context.Quiz.FindAsync(id);
-            if (quiz == null)
-            {
-                return NotFound();
-            }
 
             _context.Quiz.Remove(quiz);
             await _context.SaveChangesAsync();
