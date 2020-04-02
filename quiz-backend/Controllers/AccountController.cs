@@ -43,16 +43,34 @@ namespace quiz_backend.Controllers
 
             await signInManager.SignInAsync(user, isPersistent: false);
 
-            var claims = new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id)
-            };
+            return Ok(CreateToken(user));
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] Credentials credentials)
+        {
+            var result = await signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
+
+            if (!result.Succeeded)
+                return BadRequest();
+
+            var user = await userManager.FindByEmailAsync(credentials.Email);
+
+            return Ok(CreateToken(user));
+        }
+
+        string CreateToken(IdentityUser user)
+        {
+           var claims = new Claim[]
+           {
+               new Claim(JwtRegisteredClaimNames.Sub, user.Id)
+           };
 
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the secret phrase"));
             var signingCrednetials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
             var jwt = new JwtSecurityToken(signingCredentials: signingCrednetials, claims: claims);
-            return Ok(new JwtSecurityTokenHandler().WriteToken(jwt));
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
     }
 }
