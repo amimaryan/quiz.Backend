@@ -39,16 +39,24 @@ namespace quiz_backend.Controllers
         // GET: api/Quizzes/5
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Quiz>> GetQuiz(int id)
+        public IEnumerable<Quiz> GetQuiz(int id)
         {
-            var quiz = await _context.Quiz.FindAsync(id);
+            //    var quiz = await _context.Quiz.FindAsync(id);
 
-            if (quiz == null)
-            {
-                return NotFound();
-            }
+            //    if (quiz == null)
+            //    {
+            //        return NotFound();
+            //    }
 
-            return quiz;
+            //    return quiz;
+            var userId = HttpContext.User.Claims.First().Value;
+            return _context.Quiz.Where(q => q.OwnerId == userId);
+        }
+
+        [HttpGet("all")]
+        public IEnumerable<Quiz> GetAllQuizzes()
+        {
+            return _context.Quiz;
         }
 
         // PUT: api/Quizzes/5
